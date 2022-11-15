@@ -946,16 +946,42 @@ public class JavacParser implements Parser {
      */
     JCExpression term1Rest(JCExpression t) {
         if (token.kind == QUES) {
+            System.out.println("TERNARY HERE");
             int pos = token.pos;
             nextToken();
             JCExpression t1 = term();
             accept(COLON);
             JCExpression t2 = term1();
             return F.at(pos).Conditional(t, t1, t2);
+        } else if(token.kind == IFF) {
+            System.out.println("IFF HERE");
+            int pos = token.pos;
+            nextToken();
+            JCExpression t1 = term();
+            accept(ELSE);
+            JCExpression t2 = term1();
+            return F.at(pos).Conditional(t1, t, t2);
         } else {
             return t;
         }
     }
+
+    // johnawright
+    /* Var = Expression "iff" BoolExpression else Expression 
+     * int i = 3 iff a > b else 5;
+     */
+    /*JCExpression termIFF(JCExpression t) {
+        if (token.kind == IFF) {
+            int pos = token.pos;
+            nextToken();
+            JCExpression t1 = term();
+            accept(ELSE);
+            JCExpression t2 = term1();
+            return F.at(pos).Conditional(t1, t, t2);
+        } else {
+            return t;
+        }
+    }*/
 
     /** Expression2   = Expression3 [Expression2Rest]
      *  Type2         = Type3
