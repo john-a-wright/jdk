@@ -934,7 +934,7 @@ public class JavacParser implements Parser {
      */
     JCExpression term1() {
         JCExpression t = term2();
-        if ((mode & EXPR) != 0 && token.kind == QUES) {
+        if ((mode & EXPR) != 0 && (token.kind == QUES || token.kind == IFF)) {
             selectExprMode();
             return term1Rest(t);
         } else {
