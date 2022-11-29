@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ -z "$1"  ]; then
+	../build/windows-x86_64-server-release/jdk/bin/java -version
+	../build/windows-x86_64-server-release/jdk/bin/javac -d . ./src/TestDriver.java
+	../build/windows-x86_64-server-release/jdk/bin/java TestDriver
+else
+	../build/windows-x86_64-server-release/jdk/bin/java -version
+	../build/windows-x86_64-server-release/jdk/bin/javac -d . ./src/InitialTest.java
+	../build/windows-x86_64-server-release/jdk/bin/java InitialTest
+fi
+
+
+

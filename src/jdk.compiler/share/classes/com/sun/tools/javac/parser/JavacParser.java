@@ -946,7 +946,7 @@ public class JavacParser implements Parser {
      */
     JCExpression term1Rest(JCExpression t) {
         if (token.kind == QUES) {
-            System.out.println("TERNARY HERE");
+            //System.out.println("TERNARY HERE");
             int pos = token.pos;
             nextToken();
             JCExpression t1 = term();
@@ -954,7 +954,7 @@ public class JavacParser implements Parser {
             JCExpression t2 = term1();
             return F.at(pos).Conditional(t, t1, t2);
         } else if(token.kind == IFF) {
-            System.out.println("IFF HERE");
+            //System.out.println("IFF HERE");
             int pos = token.pos;
             nextToken();
             JCExpression t1 = term();
